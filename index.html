@@ -1,182 +1,2529 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Blue Sharks</title>
+    <title>Blue Sharks | Una ola de sabor</title>
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="description"
+        content="Blue Sharks: gomitas en forma de tiburón acompañadas de una exclusiva salsa azul dulce, ácida y picante. Un producto diferente creado en Loja, Ecuador."
+    >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="theme-color" content="#031b2f">
 
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================================
+           BLUE SHARKS
+           Página web completa en un solo archivo HTML
+           ========================================================= */
 
+        :root {
+            --navy: #021526;
+            --navy-light: #062a46;
+            --blue: #00a8ff;
+            --blue-light: #41d9ff;
+            --cyan: #77efff;
+            --white: #ffffff;
+            --soft-white: #eafaff;
+            --text: #bcd6e3;
+            --card: rgba(7, 42, 70, 0.72);
+            --border: rgba(113, 222, 255, 0.18);
+            --shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+            --radius: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--white);
+            background:
+                radial-gradient(circle at 10% 5%, rgba(0, 168, 255, 0.17), transparent 28%),
+                radial-gradient(circle at 85% 20%, rgba(65, 217, 255, 0.12), transparent 25%),
+                linear-gradient(180deg, #021526 0%, #031c31 48%, #021526 100%);
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        ::selection {
+            color: var(--navy);
+            background: var(--cyan);
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin-inline: auto;
+        }
+
+        .section {
+            position: relative;
+            padding: 110px 0;
+        }
+
+        .section-title {
+            max-width: 760px;
+            margin-bottom: 56px;
+        }
+
+        .section-title.center {
+            margin-inline: auto;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 17px;
+            color: var(--cyan);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            width: 32px;
+            height: 2px;
+            content: "";
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--blue), var(--cyan));
+        }
+
+        h1,
+        h2,
+        h3 {
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+        }
+
+        h2 {
+            margin-bottom: 18px;
+            font-size: clamp(2.2rem, 5vw, 4.2rem);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        .section-description {
+            max-width: 680px;
+            color: var(--text);
+            font-size: 1.06rem;
+        }
+
+        .gradient-text {
+            color: transparent;
+            background: linear-gradient(90deg, #ffffff 0%, #71e9ff 55%, #00a8ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Fondo decorativo */
+
+        .ocean-background {
+            position: fixed;
+            z-index: -3;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            border: 1px solid rgba(114, 232, 255, 0.15);
+            border-radius: 50%;
+            background: rgba(62, 215, 255, 0.035);
+            animation: bubbleFloat 16s linear infinite;
+        }
+
+        .bubble:nth-child(1) {
+            left: 8%;
+            bottom: -100px;
+            width: 78px;
+            height: 78px;
+            animation-delay: -3s;
+        }
+
+        .bubble:nth-child(2) {
+            left: 28%;
+            bottom: -140px;
+            width: 34px;
+            height: 34px;
+            animation-delay: -8s;
+        }
+
+        .bubble:nth-child(3) {
+            right: 12%;
+            bottom: -120px;
+            width: 120px;
+            height: 120px;
+            animation-delay: -11s;
+        }
+
+        .bubble:nth-child(4) {
+            right: 35%;
+            bottom: -80px;
+            width: 52px;
+            height: 52px;
+            animation-delay: -5s;
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.15);
+                opacity: 0;
+            }
+        }
+
+        /* Navegación */
+
+        .header {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 18px 0;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 12px 0;
+            border-color: rgba(111, 229, 255, 0.1);
+            background: rgba(2, 21, 38, 0.84);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(20px);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.18rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+
+        .logo-icon {
+            position: relative;
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(126, 235, 255, 0.3);
+            border-radius: 15px;
+            background: linear-gradient(145deg, rgba(0, 168, 255, 0.32), rgba(65, 217, 255, 0.1));
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        }
+
+        .logo-fin {
+            width: 23px;
+            height: 20px;
+            border-radius: 100% 10% 100% 0;
+            background: linear-gradient(145deg, #ffffff, var(--cyan));
+            clip-path: polygon(0 100%, 48% 8%, 100% 100%);
+            transform: rotate(-8deg);
+        }
+
+        .logo small {
+            display: block;
+            color: var(--cyan);
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: #d8edf5;
+            font-size: 0.91rem;
+            font-weight: 650;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:not(.nav-cta)::after {
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            margin: auto;
+            content: "";
+            border-radius: 50px;
+            background: var(--cyan);
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:not(.nav-cta):hover {
+            color: var(--cyan);
+        }
+
+        .nav-links a:not(.nav-cta):hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 11px 19px;
+            border: 1px solid rgba(113, 232, 255, 0.28);
+            border-radius: 50px;
+            background: rgba(0, 168, 255, 0.12);
+        }
+
+        .nav-cta:hover {
+            color: var(--navy);
+            background: var(--cyan);
+        }
+
+        .menu-button {
+            display: none;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .menu-button span {
+            display: block;
+            width: 21px;
+            height: 2px;
+            margin: 5px auto;
+            border-radius: 10px;
+            background: var(--white);
+            transition: 0.3s ease;
+        }
+
+        .menu-button.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-button.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Botones */
+
+        .button {
+            display: inline-flex;
+            min-height: 54px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0 24px;
+            border: 1px solid transparent;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 800;
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+        }
+
+        .button-primary {
+            color: var(--navy);
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            box-shadow: 0 18px 40px rgba(0, 168, 255, 0.26);
+        }
+
+        .button-primary:hover {
+            box-shadow: 0 22px 50px rgba(0, 168, 255, 0.38);
+        }
+
+        .button-secondary {
+            color: var(--white);
+            border-color: rgba(131, 231, 255, 0.24);
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(8px);
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        .button svg {
+            width: 19px;
+            height: 19px;
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            padding: 145px 0 80px;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            position: absolute;
+            z-index: -1;
+            right: -200px;
+            bottom: -260px;
+            width: 700px;
+            height: 700px;
+            content: "";
+            border: 1px solid rgba(75, 219, 255, 0.1);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 80px rgba(0, 168, 255, 0.025),
+                0 0 0 160px rgba(0, 168, 255, 0.018);
+        }
+
+        .hero-grid {
+            display: grid;
+            align-items: center;
+            gap: 70px;
+            grid-template-columns: 1.05fr 0.95fr;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 22px;
+            padding: 9px 14px;
+            color: var(--cyan);
+            border: 1px solid rgba(113, 232, 255, 0.2);
+            border-radius: 100px;
+            background: rgba(0, 168, 255, 0.07);
+            font-size: 0.8rem;
+            font-weight: 750;
+        }
+
+        .hero-badge span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 16px var(--cyan);
+        }
+
+        .hero h1 {
+            max-width: 720px;
+            margin-bottom: 24px;
+            font-size: clamp(3.2rem, 7vw, 6.8rem);
+            font-weight: 900;
+        }
+
+        .hero-description {
+            max-width: 620px;
+            margin-bottom: 34px;
+            color: var(--text);
+            font-size: clamp(1rem, 2vw, 1.2rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 38px;
+        }
+
+        .hero-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            color: #d7edf5;
+            font-size: 0.88rem;
+        }
+
+        .hero-details span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .detail-check {
+            display: grid;
+            width: 22px;
+            height: 22px;
+            place-items: center;
+            color: var(--navy);
+            border-radius: 50%;
+            background: var(--cyan);
+            font-size: 0.72rem;
+            font-weight: 900;
+        }
+
+        /* Empaque del producto creado con CSS */
+
+        .product-visual {
+            position: relative;
+            display: grid;
+            min-height: 570px;
+            place-items: center;
+            perspective: 1000px;
+        }
+
+        .visual-glow {
+            position: absolute;
+            width: 430px;
+            height: 430px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 190, 255, 0.28), transparent 68%);
+            filter: blur(10px);
+            animation: glowPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            50% {
+                transform: scale(1.08);
+                opacity: 0.72;
+            }
+        }
+
+        .product-pouch {
+            position: relative;
+            z-index: 2;
+            width: min(350px, 82vw);
+            height: 475px;
+            overflow: hidden;
+            border: 1px solid rgba(188, 242, 255, 0.25);
+            border-radius: 38px 38px 54px 54px;
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, 0.14), transparent 22%),
+                linear-gradient(145deg, #053d65 0%, #03243d 48%, #041a2c 100%);
+            box-shadow:
+                0 45px 90px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: rotateY(-7deg) rotateX(3deg) rotateZ(2deg);
+            animation: productFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes productFloat {
+            50% {
+                transform: rotateY(-3deg) rotateX(1deg) rotateZ(-1deg) translateY(-16px);
+            }
+        }
+
+        .pouch-top {
+            position: absolute;
+            top: 18px;
+            right: 16px;
+            left: 16px;
+            height: 8px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .pouch-wave {
+            position: absolute;
+            right: -20%;
+            bottom: -15%;
+            width: 140%;
+            height: 46%;
+            border-radius: 50% 50% 0 0;
+            background:
+                radial-gradient(circle at 40% 10%, rgba(255, 255, 255, 0.25), transparent 4%),
+                linear-gradient(180deg, #14c8ff, #0076d6);
+            transform: rotate(-7deg);
+        }
+
+        .pouch-content {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            padding: 64px 28px 28px;
+            text-align: center;
+        }
+
+        .pouch-fin {
+            width: 74px;
+            height: 72px;
+            margin-bottom: 18px;
+            border-radius: 100% 0;
+            background: linear-gradient(145deg, #ffffff, var(--cyan));
+            clip-path: polygon(0 100%, 48% 0, 100% 100%);
+            filter: drop-shadow(0 12px 16px rgba(0, 168, 255, 0.25));
+        }
+
+        .pouch-title {
+            font-size: 2.55rem;
+            font-weight: 950;
+            letter-spacing: -0.07em;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        .pouch-subtitle {
+            margin-top: 10px;
+            color: var(--cyan);
+            font-size: 0.68rem;
+            font-weight: 850;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+        }
+
+        .pouch-flavor {
+            margin-top: 21px;
+            padding: 8px 13px;
+            color: var(--soft-white);
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.07);
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .pouch-window {
+            position: relative;
+            width: 210px;
+            height: 112px;
+            margin-top: 26px;
+            overflow: hidden;
+            border: 1px solid rgba(153, 235, 255, 0.23);
+            border-radius: 45% 50% 38% 42%;
+            background: rgba(1, 15, 27, 0.38);
+            box-shadow: inset 0 12px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(6px);
+        }
+
+        .gummy {
+            position: absolute;
+            width: 64px;
+            height: 36px;
+            opacity: 0.92;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #57eaff, #0379dd);
+            box-shadow:
+                inset 7px 7px 12px rgba(255, 255, 255, 0.25),
+                0 8px 15px rgba(0, 0, 0, 0.2);
+            clip-path: polygon(
+                0 50%,
+                17% 26%,
+                45% 31%,
+                62% 6%,
+                68% 35%,
+                100% 50%,
+                68% 65%,
+                62% 94%,
+                45% 69%,
+                17% 74%
+            );
+        }
+
+        .gummy:nth-child(1) {
+            top: 18px;
+            left: 20px;
+            transform: rotate(14deg);
+        }
+
+        .gummy:nth-child(2) {
+            top: 51px;
+            left: 76px;
+            transform: rotate(-12deg);
+        }
+
+        .gummy:nth-child(3) {
+            top: 13px;
+            right: 18px;
+            transform: rotate(22deg);
+        }
+
+        .gummy:nth-child(4) {
+            right: 12px;
+            bottom: 8px;
+            transform: rotate(-6deg);
+        }
+
+        .pouch-price {
+            position: absolute;
+            z-index: 5;
+            right: -17px;
+            bottom: 42px;
+            display: grid;
+            width: 91px;
+            height: 91px;
+            place-items: center;
+            border: 5px solid #062843;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #ffffff, #b9f5ff);
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.3);
+            transform: rotate(-8deg);
+        }
+
+        .pouch-price span {
+            color: var(--navy);
+            font-size: 1.45rem;
+            font-weight: 950;
+            line-height: 1;
+        }
+
+        .pouch-price small {
+            display: block;
+            margin-top: 4px;
+            color: #126384;
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .floating-tag {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 17px;
+            border: 1px solid rgba(138, 235, 255, 0.18);
+            border-radius: 16px;
+            background: rgba(5, 40, 65, 0.68);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(15px);
+            font-size: 0.78rem;
+            font-weight: 750;
+        }
+
+        .floating-tag::before {
+            width: 9px;
+            height: 9px;
+            content: "";
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 13px var(--cyan);
+        }
+
+        .tag-one {
+            top: 95px;
+            left: -10px;
+            animation: tagFloat 4.5s ease-in-out infinite;
+        }
+
+        .tag-two {
+            right: -5px;
+            bottom: 100px;
+            animation: tagFloat 4.5s 1s ease-in-out infinite;
+        }
+
+        @keyframes tagFloat {
+            50% {
+                transform: translateY(-11px);
+            }
+        }
+
+        /* Franja de características */
+
+        .feature-strip {
+            position: relative;
+            z-index: 3;
+            margin-top: -30px;
+        }
+
+        .feature-strip-inner {
+            display: grid;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: rgba(5, 39, 64, 0.7);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(20px);
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .feature-item {
+            position: relative;
+            padding: 27px 24px;
+            text-align: center;
+        }
+
+        .feature-item:not(:last-child)::after {
+            position: absolute;
+            top: 26%;
+            right: 0;
+            width: 1px;
+            height: 48%;
+            content: "";
+            background: var(--border);
+        }
+
+        .feature-item strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .feature-item span {
+            color: var(--text);
+            font-size: 0.79rem;
+        }
+
+        /* Sobre Blue Sharks */
+
+        .about-grid {
+            display: grid;
+            align-items: center;
+            gap: 80px;
+            grid-template-columns: 0.9fr 1.1fr;
+        }
+
+        .about-visual {
+            position: relative;
+            min-height: 510px;
+        }
+
+        .about-card-main {
+            position: absolute;
+            inset: 25px 30px 45px 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background:
+                linear-gradient(145deg, rgba(0, 168, 255, 0.16), rgba(4, 37, 61, 0.82)),
+                radial-gradient(circle at 30% 25%, rgba(79, 224, 255, 0.2), transparent 30%);
+            box-shadow: var(--shadow);
+        }
+
+        .about-card-main::before,
+        .about-card-main::after {
+            position: absolute;
+            content: "";
+            border: 1px solid rgba(116, 231, 255, 0.09);
+            border-radius: 50%;
+        }
+
+        .about-card-main::before {
+            right: -110px;
+            bottom: -110px;
+            width: 360px;
+            height: 360px;
+        }
+
+        .about-card-main::after {
+            top: -70px;
+            left: -70px;
+            width: 230px;
+            height: 230px;
+        }
+
+        .big-shark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 78%;
+            height: 210px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(83, 227, 255, 0.9), rgba(0, 105, 198, 0.72));
+            box-shadow:
+                inset 20px 20px 40px rgba(255, 255, 255, 0.18),
+                0 30px 50px rgba(0, 0, 0, 0.24);
+            clip-path: polygon(
+                0 50%,
+                18% 24%,
+                53% 28%,
+                66% 0,
+                71% 34%,
+                100% 50%,
+                71% 66%,
+                66% 100%,
+                53% 72%,
+                18% 76%
+            );
+            transform: translate(-50%, -50%) rotate(-7deg);
+        }
+
+        .about-floating-card {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 210px;
+            padding: 22px;
+            border: 1px solid rgba(130, 231, 255, 0.24);
+            border-radius: 22px;
+            background: rgba(4, 34, 57, 0.9);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(16px);
+        }
+
+        .about-floating-card strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--cyan);
+            font-size: 1.7rem;
+        }
+
+        .about-floating-card span {
+            color: var(--text);
+            font-size: 0.8rem;
+        }
+
+        .about-content .section-description {
+            margin-bottom: 28px;
+        }
+
+        .about-points {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 34px;
+        }
+
+        .about-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 16px;
+            border: 1px solid rgba(118, 228, 255, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .about-point-icon {
+            display: grid;
+            width: 36px;
+            height: 36px;
+            flex: 0 0 auto;
+            place-items: center;
+            color: var(--navy);
+            border-radius: 11px;
+            background: linear-gradient(145deg, var(--cyan), var(--blue));
+            font-weight: 900;
+        }
+
+        .about-point strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .about-point p {
+            color: var(--text);
+            font-size: 0.86rem;
+        }
+
+        /* Sabores */
+
+        .flavors {
+            overflow: hidden;
+        }
+
+        .flavor-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .flavor-card {
+            position: relative;
+            min-height: 410px;
+            overflow: hidden;
+            padding: 34px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, rgba(7, 49, 80, 0.8), rgba(3, 27, 47, 0.84));
+            box-shadow: 0 24px 55px rgba(0, 0, 0, 0.18);
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .flavor-card:hover {
+            border-color: rgba(106, 226, 255, 0.45);
+            box-shadow: 0 34px 70px rgba(0, 0, 0, 0.3);
+            transform: translateY(-12px);
+        }
+
+        .flavor-card::before {
+            position: absolute;
+            right: -80px;
+            bottom: -100px;
+            width: 260px;
+            height: 260px;
+            content: "";
+            border-radius: 50%;
+            background: var(--flavor-glow);
+            filter: blur(15px);
+            opacity: 0.22;
+        }
+
+        .flavor-number {
+            display: inline-flex;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.055);
+            font-size: 0.82rem;
+            font-weight: 850;
+        }
+
+        .flavor-card h3 {
+            margin-bottom: 13px;
+            font-size: 2rem;
+        }
+
+        .flavor-card p {
+            max-width: 290px;
+            color: var(--text);
+            font-size: 0.94rem;
+        }
+
+        .flavor-level {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .flavor-level span {
+            width: 40px;
+            height: 5px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.11);
+        }
+
+        .flavor-level span.active {
+            background: linear-gradient(90deg, var(--cyan), var(--blue));
+            box-shadow: 0 0 14px rgba(70, 221, 255, 0.36);
+        }
+
+        .mini-gummy {
+            position: absolute;
+            right: 29px;
+            bottom: 35px;
+            width: 105px;
+            height: 58px;
+            border-radius: 50%;
+            background: var(--gummy-color);
+            box-shadow:
+                inset 10px 10px 20px rgba(255, 255, 255, 0.22),
+                0 22px 30px rgba(0, 0, 0, 0.22);
+            clip-path: polygon(
+                0 50%,
+                18% 25%,
+                48% 31%,
+                64% 2%,
+                70% 35%,
+                100% 50%,
+                70% 65%,
+                64% 98%,
+                48% 69%,
+                18% 75%
+            );
+            transform: rotate(-12deg);
+            transition: transform 0.35s ease;
+        }
+
+        .flavor-card:hover .mini-gummy {
+            transform: rotate(2deg) scale(1.08);
+        }
+
+        /* Diferenciadores */
+
+        .benefits-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .benefit-card {
+            display: flex;
+            gap: 20px;
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.03);
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: rgba(0, 168, 255, 0.07);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            display: grid;
+            width: 54px;
+            height: 54px;
+            flex: 0 0 auto;
+            place-items: center;
+            color: var(--navy);
+            border-radius: 17px;
+            background: linear-gradient(145deg, var(--cyan), var(--blue));
+            box-shadow: 0 14px 30px rgba(0, 168, 255, 0.18);
+        }
+
+        .benefit-icon svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        .benefit-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .benefit-card p {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        /* Objetivos */
+
+        .goals {
+            overflow: hidden;
+        }
+
+        .goals-panel {
+            position: relative;
+            overflow: hidden;
+            padding: 65px;
+            border: 1px solid rgba(123, 231, 255, 0.18);
+            border-radius: 36px;
+            background:
+                radial-gradient(circle at 80% 20%, rgba(0, 183, 255, 0.2), transparent 25%),
+                linear-gradient(145deg, rgba(6, 48, 78, 0.92), rgba(2, 25, 43, 0.92));
+            box-shadow: var(--shadow);
+        }
+
+        .goals-panel::after {
+            position: absolute;
+            right: -140px;
+            bottom: -140px;
+            width: 380px;
+            height: 380px;
+            content: "";
+            border: 1px solid rgba(126, 232, 255, 0.09);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 65px rgba(126, 232, 255, 0.025),
+                0 0 0 130px rgba(126, 232, 255, 0.015);
+        }
+
+        .goal-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            gap: 22px;
+            margin-top: 42px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .goal-card {
+            padding: 28px;
+            border: 1px solid rgba(140, 235, 255, 0.15);
+            border-radius: 22px;
+            background: rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(8px);
+        }
+
+        .goal-number {
+            margin-bottom: 8px;
+            color: var(--cyan);
+            font-size: clamp(2.5rem, 5vw, 4.3rem);
+            font-weight: 950;
+            letter-spacing: -0.07em;
+            line-height: 1;
+        }
+
+        .goal-card strong {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 1rem;
+        }
+
+        .goal-card p {
+            color: var(--text);
+            font-size: 0.85rem;
+        }
+
+        /* Proceso */
+
+        .process-grid {
+            position: relative;
+            display: grid;
+            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .process-grid::before {
+            position: absolute;
+            z-index: 0;
+            top: 31px;
+            right: 10%;
+            left: 10%;
+            height: 1px;
+            content: "";
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(83, 224, 255, 0.38),
+                transparent
+            );
+        }
+
+        .process-card {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .process-icon {
+            display: grid;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 23px;
+            place-items: center;
+            color: var(--navy);
+            border: 7px solid var(--navy);
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--cyan), var(--blue));
+            box-shadow: 0 0 0 1px rgba(106, 229, 255, 0.25);
+            font-weight: 950;
+        }
+
+        .process-card h3 {
+            margin-bottom: 9px;
+        }
+
+        .process-card p {
+            color: var(--text);
+            font-size: 0.86rem;
+        }
+
+        /* CTA final */
+
+        .cta-card {
+            position: relative;
+            display: grid;
+            align-items: center;
+            gap: 45px;
+            overflow: hidden;
+            padding: 70px;
+            border: 1px solid rgba(130, 235, 255, 0.25);
+            border-radius: 38px;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(111, 235, 255, 0.22), transparent 26%),
+                linear-gradient(135deg, #0876b8, #064267 45%, #03243d);
+            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.35);
+            grid-template-columns: 1.2fr 0.8fr;
+        }
+
+        .cta-card::before {
+            position: absolute;
+            top: -170px;
+            right: -130px;
+            width: 440px;
+            height: 440px;
+            content: "";
+            border: 1px solid rgba(255, 255, 255, 0.13);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 70px rgba(255, 255, 255, 0.025),
+                0 0 0 140px rgba(255, 255, 255, 0.016);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-card h2 {
+            max-width: 680px;
+            margin-bottom: 17px;
+        }
+
+        .cta-card p {
+            max-width: 640px;
+            color: #d9f2f8;
+        }
+
+        .cta-actions {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .cta-actions .button {
+            width: 100%;
+        }
+
+        /* Footer */
+
+        .footer {
+            padding: 55px 0 30px;
+            border-top: 1px solid rgba(113, 232, 255, 0.09);
+        }
+
+        .footer-top {
+            display: grid;
+            gap: 45px;
+            margin-bottom: 45px;
+            grid-template-columns: 1.2fr 0.8fr 0.8fr;
+        }
+
+        .footer-brand p {
+            max-width: 390px;
+            margin-top: 18px;
+            color: var(--text);
+            font-size: 0.88rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+            letter-spacing: 0;
+        }
+
+        .footer-column ul {
+            display: grid;
+            gap: 11px;
+            list-style: none;
+        }
+
+        .footer-column a,
+        .footer-column li {
+            color: var(--text);
+            font-size: 0.86rem;
+            transition: color 0.25s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--cyan);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 24px;
+            color: #7fa5b7;
+            border-top: 1px solid rgba(113, 232, 255, 0.08);
+            font-size: 0.76rem;
+        }
+
+        .footer-bottom strong {
+            color: var(--cyan);
+        }
+
+        /* Animaciones al hacer scroll */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* Diseño responsive */
+
+        @media (max-width: 1000px) {
+            .hero-grid,
+            .about-grid,
+            .cta-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 135px;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-inline: auto;
+            }
+
+            .hero-actions,
+            .hero-details {
+                justify-content: center;
+            }
+
+            .product-visual {
+                min-height: 520px;
+            }
+
+            .feature-strip {
+                margin-top: 0;
+            }
+
+            .feature-strip-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-item:nth-child(2)::after {
+                display: none;
+            }
+
+            .feature-item:nth-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .flavor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flavor-card {
+                min-height: 330px;
+            }
+
+            .goal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid::before {
+                display: none;
+            }
+
+            .cta-actions {
+                max-width: 480px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .section {
+                padding: 85px 0;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                display: flex;
+                width: min(330px, 88vw);
+                height: 100vh;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                gap: 27px;
+                padding: 80px 38px;
+                border-left: 1px solid var(--border);
+                background: rgba(2, 21, 38, 0.97);
+                box-shadow: -30px 0 70px rgba(0, 0, 0, 0.34);
+                backdrop-filter: blur(25px);
+                transition: right 0.35s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .goals-panel,
+            .cta-card {
+                padding: 45px 28px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .container {
+                width: min(100% - 28px, 1160px);
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: clamp(3rem, 17vw, 4.5rem);
+            }
+
+            .hero-actions .button {
+                width: 100%;
+            }
+
+            .hero-details {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .product-visual {
+                min-height: 465px;
+            }
+
+            .product-pouch {
+                width: 290px;
+                height: 410px;
+            }
+
+            .pouch-content {
+                padding-top: 55px;
+            }
+
+            .pouch-fin {
+                width: 58px;
+                height: 58px;
+            }
+
+            .pouch-title {
+                font-size: 2.05rem;
+            }
+
+            .pouch-window {
+                width: 180px;
+                height: 95px;
+                margin-top: 20px;
+            }
+
+            .pouch-price {
+                right: -8px;
+                bottom: 25px;
+                width: 78px;
+                height: 78px;
+            }
+
+            .floating-tag {
+                padding: 10px 12px;
+                font-size: 0.68rem;
+            }
+
+            .tag-one {
+                top: 65px;
+                left: -2px;
+            }
+
+            .tag-two {
+                right: -3px;
+                bottom: 65px;
+            }
+
+            .feature-strip-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .feature-item::after {
+                display: none;
+            }
+
+            .feature-item:last-child {
+                border-bottom: 0;
+            }
+
+            .about-visual {
+                min-height: 390px;
+            }
+
+            .about-card-main {
+                right: 12px;
+                bottom: 30px;
+            }
+
+            .about-floating-card {
+                width: 180px;
+            }
+
+            .big-shark {
+                height: 150px;
+            }
+
+            .benefit-card {
+                flex-direction: column;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-brand {
+                grid-column: auto;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-
-    <div class="logo">
-
-        <h2>🦈 Blue Sharks</h2>
-
+    <div class="ocean-background" aria-hidden="true">
+        <span class="bubble"></span>
+        <span class="bubble"></span>
+        <span class="bubble"></span>
+        <span class="bubble"></span>
     </div>
 
-    <nav>
+    <!-- =========================================================
+         NAVEGACIÓN
+         ========================================================= -->
 
-        <a href="#inicio">Inicio</a>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar" aria-label="Navegación principal">
 
-        <a href="#nosotros">Nosotros</a>
+                <a class="logo" href="#inicio" aria-label="Ir al inicio">
+                    <span class="logo-icon">
+                        <span class="logo-fin"></span>
+                    </span>
 
-        <a href="#producto">Producto</a>
+                    <span>
+                        BLUE SHARKS
+                        <small>Una ola de sabor</small>
+                    </span>
+                </a>
 
-        <a href="#beneficios">Beneficios</a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#sabores">Sabores</a></li>
+                    <li><a href="#diferencia">¿Por qué elegirnos?</a></li>
+                    <li><a class="nav-cta" href="#contacto">Pedir ahora</a></li>
+                </ul>
 
-        <a href="#contacto">Contacto</a>
+                <button
+                    class="menu-button"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Abrir menú"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-    </nav>
+            </nav>
+        </div>
+    </header>
 
-</header>
+    <main>
 
-<section id="inicio" class="hero">
+        <!-- =====================================================
+             HERO
+             ===================================================== -->
 
-    <div class="hero-text">
+        <section class="hero" id="inicio">
+            <div class="container">
+                <div class="hero-grid">
 
-        <h1>¡El snack más divertido del océano!</h1>
+                    <div class="hero-content reveal">
+                        <div class="hero-badge">
+                            <span></span>
+                            Creado en Loja, Ecuador
+                        </div>
 
-        <p>
+                        <h1>
+                            Sumérgete en una
+                            <span class="gradient-text">ola de sabor.</span>
+                        </h1>
 
-            Gomitas de tiburón acompañadas de una deliciosa salsa azul con un
+                        <p class="hero-description">
+                            Gomitas en forma de tiburón acompañadas de nuestra
+                            exclusiva salsa azul. Una combinación dulce, ácida y
+                            picante creada para quienes buscan probar algo diferente.
+                        </p>
 
-            sabor único, dulce, ácido y picante.
+                        <div class="hero-actions">
+                            <a class="button button-primary" href="#contacto">
+                                Pedir Blue Sharks
 
-        </p>
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    aria-hidden="true"
+                                >
+                                    <path d="M5 12h14"></path>
+                                    <path d="m13 6 6 6-6 6"></path>
+                                </svg>
+                            </a>
 
-        <button>¡Quiero probarlas!</button>
+                            <a class="button button-secondary" href="#sabores">
+                                Descubrir sabores
+                            </a>
+                        </div>
 
-    </div>
+                        <div class="hero-details">
+                            <span>
+                                <span class="detail-check">✓</span>
+                                Sabor original
+                            </span>
 
-</section>
+                            <span>
+                                <span class="detail-check">✓</span>
+                                Presentación práctica
+                            </span>
 
-<section id="nosotros" class="about">
+                            <span>
+                                <span class="detail-check">✓</span>
+                                Salsa azul exclusiva
+                            </span>
+                        </div>
+                    </div>
 
-    <h2>¿Quiénes somos?</h2>
+                    <div class="product-visual reveal delay-1" aria-label="Presentación de Blue Sharks">
+                        <div class="visual-glow"></div>
 
-    <p>
+                        <div class="floating-tag tag-one">
+                            Dulce + ácido
+                        </div>
 
-        Blue Sharks nace como una marca innovadora que busca ofrecer una experiencia
+                        <div class="floating-tag tag-two">
+                            Toque picante
+                        </div>
 
-        diferente mediante gomitas de tiburón con una exclusiva salsa azul inspirada
+                        <div class="product-pouch">
+                            <div class="pouch-top"></div>
+                            <div class="pouch-wave"></div>
 
-        en el mar.
+                            <div class="pouch-content">
+                                <div class="pouch-fin"></div>
 
-    </p>
+                                <div class="pouch-title">
+                                    Blue<br>Sharks
+                                </div>
 
-</section>
+                                <div class="pouch-subtitle">
+                                    Una ola de sabor
+                                </div>
 
-<section id="producto" class="cards">
+                                <div class="pouch-flavor">
+                                    Gomitas + salsa azul
+                                </div>
 
-    <h2>Nuestro Producto</h2>
+                                <div class="pouch-window">
+                                    <span class="gummy"></span>
+                                    <span class="gummy"></span>
+                                    <span class="gummy"></span>
+                                    <span class="gummy"></span>
+                                </div>
+                            </div>
 
-    <div class="container">
+                            <div class="pouch-price">
+                                <span>
+                                    $5
+                                    <small>por unidad</small>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="card">
+                </div>
+            </div>
+        </section>
 
-            <h3>🦈 Gomitas</h3>
+        <!-- =====================================================
+             CARACTERÍSTICAS
+             ===================================================== -->
 
-            <p>Divertidas gomitas con forma de tiburón.</p>
+        <section class="feature-strip" aria-label="Características del producto">
+            <div class="container">
+                <div class="feature-strip-inner reveal">
+
+                    <div class="feature-item">
+                        <strong>Salsa exclusiva</strong>
+                        <span>Elaborada especialmente para Blue Sharks</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <strong>Sabor diferente</strong>
+                        <span>Dulce, ácido y picante en una sola experiencia</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <strong>Identidad original</strong>
+                        <span>Inspirada en el mar y los tiburones</span>
+                    </div>
+
+                    <div class="feature-item">
+                        <strong>Perfecto para compartir</strong>
+                        <span>En reuniones, clases, eventos y momentos especiales</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             NOSOTROS
+             ===================================================== -->
+
+        <section class="section" id="nosotros">
+            <div class="container">
+                <div class="about-grid">
+
+                    <div class="about-visual reveal">
+                        <div class="about-card-main">
+                            <div class="big-shark"></div>
+                        </div>
+
+                        <div class="about-floating-card">
+                            <strong>100%</strong>
+                            <span>
+                                Una propuesta creativa, juvenil y diferente.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="about-content reveal delay-1">
+                        <span class="eyebrow">Nuestra esencia</span>
+
+                        <h2>
+                            No vendemos solo gomitas.
+                            <span class="gradient-text">Creamos una experiencia.</span>
+                        </h2>
+
+                        <p class="section-description">
+                            Blue Sharks nace como una propuesta innovadora para
+                            transformar una golosina tradicional en una experiencia
+                            divertida y memorable. Nuestro elemento principal es una
+                            salsa azul propia, inspirada en el océano y diseñada para
+                            combinar perfectamente con nuestras gomitas de tiburón.
+                        </p>
+
+                        <div class="about-points">
+
+                            <article class="about-point">
+                                <div class="about-point-icon">01</div>
+                                <div>
+                                    <strong>Una combinación fuera de lo común</strong>
+                                    <p>
+                                        Mezclamos diferentes sensaciones para ofrecer
+                                        un sabor que sorprende desde el primer bocado.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="about-point">
+                                <div class="about-point-icon">02</div>
+                                <div>
+                                    <strong>Una marca con personalidad</strong>
+                                    <p>
+                                        Nuestra imagen marina, el color azul y el
+                                        concepto de los tiburones hacen que el producto
+                                        sea fácil de reconocer.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <article class="about-point">
+                                <div class="about-point-icon">03</div>
+                                <div>
+                                    <strong>Creado para jóvenes y estudiantes</strong>
+                                    <p>
+                                        Blue Sharks es perfecto para quienes disfrutan
+                                        probar productos novedosos y compartirlos con amigos.
+                                    </p>
+                                </div>
+                            </article>
+
+                        </div>
+
+                        <a class="button button-primary" href="#diferencia">
+                            Conoce nuestra propuesta
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             SABORES
+             ===================================================== -->
+
+        <section class="section flavors" id="sabores">
+            <div class="container">
+
+                <div class="section-title center reveal">
+                    <span class="eyebrow">La experiencia Blue Sharks</span>
+
+                    <h2>
+                        Tres sensaciones.
+                        <span class="gradient-text">Un sabor inolvidable.</span>
+                    </h2>
+
+                    <p class="section-description" style="margin-inline: auto;">
+                        Cada elemento está pensado para crear una mezcla equilibrada
+                        que comienza dulce, continúa ácida y termina con un toque picante.
+                    </p>
+                </div>
+
+                <div class="flavor-grid">
+
+                    <article
+                        class="flavor-card reveal"
+                        style="
+                            --flavor-glow: #40e6ff;
+                            --gummy-color: linear-gradient(145deg, #72efff, #008cff);
+                        "
+                    >
+                        <span class="flavor-number">01</span>
+
+                        <h3>Dulce</h3>
+
+                        <p>
+                            El sabor suave y frutal de las gomitas es el punto de
+                            partida de la experiencia Blue Sharks.
+                        </p>
+
+                        <div class="flavor-level" aria-label="Intensidad dulce media">
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span></span>
+                        </div>
+
+                        <div class="mini-gummy" aria-hidden="true"></div>
+                    </article>
+
+                    <article
+                        class="flavor-card reveal delay-1"
+                        style="
+                            --flavor-glow: #4db2ff;
+                            --gummy-color: linear-gradient(145deg, #38ceff, #004fd1);
+                        "
+                    >
+                        <span class="flavor-number">02</span>
+
+                        <h3>Ácido</h3>
+
+                        <p>
+                            La salsa azul aporta una sensación intensa y refrescante
+                            que transforma por completo el sabor de las gomitas.
+                        </p>
+
+                        <div class="flavor-level" aria-label="Intensidad ácida alta">
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span class="active"></span>
+                        </div>
+
+                        <div class="mini-gummy" aria-hidden="true"></div>
+                    </article>
+
+                    <article
+                        class="flavor-card reveal delay-2"
+                        style="
+                            --flavor-glow: #006eff;
+                            --gummy-color: linear-gradient(145deg, #079dff, #002a9d);
+                        "
+                    >
+                        <span class="flavor-number">03</span>
+
+                        <h3>Picante</h3>
+
+                        <p>
+                            Un toque final de picante completa la mezcla sin ocultar
+                            los demás sabores del producto.
+                        </p>
+
+                        <div class="flavor-level" aria-label="Intensidad picante media">
+                            <span class="active"></span>
+                            <span class="active"></span>
+                            <span></span>
+                        </div>
+
+                        <div class="mini-gummy" aria-hidden="true"></div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             DIFERENCIADORES
+             ===================================================== -->
+
+        <section class="section" id="diferencia">
+            <div class="container">
+
+                <div class="section-title reveal">
+                    <span class="eyebrow">Nuestra diferencia</span>
+
+                    <h2>
+                        ¿Por qué elegir
+                        <span class="gradient-text">Blue Sharks?</span>
+                    </h2>
+
+                    <p class="section-description">
+                        Creamos una propuesta pensada para destacar tanto por su sabor
+                        como por su identidad visual y su forma de consumo.
+                    </p>
+                </div>
+
+                <div class="benefits-grid">
+
+                    <article class="benefit-card reveal">
+                        <div class="benefit-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 2v20"></path>
+                                <path d="m17 5-5-3-5 3"></path>
+                                <path d="m17 19-5 3-5-3"></path>
+                                <path d="m2 12 3-5 3 5-3 5-3-5Z"></path>
+                                <path d="m16 12 3-5 3 5-3 5-3-5Z"></path>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h3>Salsa azul propia</h3>
+                            <p>
+                                Nuestro principal diferenciador es una salsa azul
+                                desarrollada para complementar el sabor de las gomitas.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="benefit-card reveal delay-1">
+                        <div class="benefit-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <path d="M12 2 15 8l7 .9-5 4.7 1.4 6.9L12 17l-6.4 3.5L7 13.6 2 8.9 9 8l3-6Z"></path>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h3>Concepto memorable</h3>
+                            <p>
+                                El nombre, los colores y la temática marina crean una
+                                marca llamativa y fácil de recordar.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="benefit-card reveal">
+                        <div class="benefit-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <path d="M9 9h.01"></path>
+                                <path d="M15 9h.01"></path>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h3>Ideal para compartir</h3>
+                            <p>
+                                Su presentación es práctica para llevar, regalar,
+                                compartir con amigos o consumir en cualquier momento.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="benefit-card reveal delay-1">
+                        <div class="benefit-icon">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <path d="M4 19V9"></path>
+                                <path d="M10 19V5"></path>
+                                <path d="M16 19v-7"></path>
+                                <path d="M22 19V2"></path>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h3>Potencial de crecimiento</h3>
+                            <p>
+                                La propuesta puede comercializarse en redes sociales,
+                                cafeterías, tiendas, universidades, ferias y eventos.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             OBJETIVOS
+             ===================================================== -->
+
+        <section class="section goals">
+            <div class="container">
+                <div class="goals-panel reveal">
+
+                    <span class="eyebrow">Nuestra visión 2026</span>
+
+                    <h2>
+                        Una marca local con
+                        <span class="gradient-text">grandes objetivos.</span>
+                    </h2>
+
+                    <p class="section-description">
+                        Blue Sharks busca crecer de manera organizada, conectar con
+                        su público y posicionarse como una propuesta diferente dentro
+                        de la ciudad de Loja.
+                    </p>
+
+                    <div class="goal-grid">
+
+                        <article class="goal-card">
+                            <div class="goal-number">1.500</div>
+                            <strong>Unidades vendidas</strong>
+                            <p>
+                                Meta de comercialización en la ciudad de Loja hasta
+                                diciembre de 2026.
+                            </p>
+                        </article>
+
+                        <article class="goal-card">
+                            <div class="goal-number">8</div>
+                            <strong>Establecimientos aliados</strong>
+                            <p>
+                                Tiendas, cafeterías y negocios locales que incorporen
+                                Blue Sharks dentro de su oferta.
+                            </p>
+                        </article>
+
+                        <article class="goal-card">
+                            <div class="goal-number">300</div>
+                            <strong>Interacciones mensuales</strong>
+                            <p>
+                                Conexiones con nuestra comunidad mediante contenido
+                                creativo en Instagram.
+                            </p>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             PROCESO DE COMPRA
+             ===================================================== -->
+
+        <section class="section">
+            <div class="container">
+
+                <div class="section-title center reveal">
+                    <span class="eyebrow">Pide el tuyo</span>
+
+                    <h2>
+                        De la pantalla a tus manos
+                        <span class="gradient-text">en pocos pasos.</span>
+                    </h2>
+                </div>
+
+                <div class="process-grid">
+
+                    <article class="process-card reveal">
+                        <div class="process-icon">1</div>
+                        <h3>Elige</h3>
+                        <p>
+                            Selecciona la cantidad de unidades que deseas pedir.
+                        </p>
+                    </article>
+
+                    <article class="process-card reveal delay-1">
+                        <div class="process-icon">2</div>
+                        <h3>Escríbenos</h3>
+                        <p>
+                            Comunícate con nosotros por Instagram o WhatsApp.
+                        </p>
+                    </article>
+
+                    <article class="process-card reveal delay-2">
+                        <div class="process-icon">3</div>
+                        <h3>Confirma</h3>
+                        <p>
+                            Coordinamos el pago y el lugar de entrega de tu pedido.
+                        </p>
+                    </article>
+
+                    <article class="process-card reveal delay-3">
+                        <div class="process-icon">4</div>
+                        <h3>Disfruta</h3>
+                        <p>
+                            Recibe tus Blue Sharks y sumérgete en la experiencia.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             CONTACTO
+             Cambia los enlaces # por tus redes sociales reales.
+             ===================================================== -->
+
+        <section class="section" id="contacto">
+            <div class="container">
+
+                <div class="cta-card reveal">
+
+                    <div class="cta-content">
+                        <span class="eyebrow">Haz tu pedido</span>
+
+                        <h2>
+                            ¿Listo para probar
+                            <span class="gradient-text">Blue Sharks?</span>
+                        </h2>
+
+                        <p>
+                            Contáctanos para pedidos individuales, ventas para eventos,
+                            alianzas comerciales o distribución en establecimientos.
+                        </p>
+                    </div>
+
+                    <div class="cta-actions">
+
+                        <!--
+                            Reemplaza el número por tu WhatsApp.
+                            Ejemplo:
+                            https://wa.me/593999999999
+                        -->
+
+                        <a
+                            class="button button-primary"
+                            href="https://wa.me/593999999999?text=Hola%2C%20quiero%20realizar%20un%20pedido%20de%20Blue%20Sharks."
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Pedir por WhatsApp
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                aria-hidden="true"
+                            >
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                            </svg>
+                        </a>
+
+                        <!-- Reemplaza # por el enlace de Instagram -->
+
+                        <a
+                            class="button button-secondary"
+                            href="#"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visitar Instagram
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-top">
+
+                <div class="footer-brand">
+                    <a class="logo" href="#inicio">
+                        <span class="logo-icon">
+                            <span class="logo-fin"></span>
+                        </span>
+
+                        <span>
+                            BLUE SHARKS
+                            <small>Una ola de sabor</small>
+                        </span>
+                    </a>
+
+                    <p>
+                        Gomitas de tiburón con una exclusiva salsa azul dulce,
+                        ácida y picante. Una experiencia diferente creada en
+                        Loja, Ecuador.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Navegación</h3>
+
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#sabores">Sabores</a></li>
+                        <li><a href="#diferencia">Nuestra diferencia</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Información</h3>
+
+                    <ul>
+                        <li>Loja, Ecuador</li>
+                        <li>Pedidos individuales</li>
+                        <li>Ventas para eventos</li>
+                        <li>Alianzas comerciales</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © <span id="currentYear"></span>
+                    <strong>Blue Sharks</strong>. Todos los derechos reservados.
+                </p>
+
+                <p>
+                    Creado para hacer olas.
+                </p>
+            </div>
 
         </div>
+    </footer>
 
-        <div class="card">
+    <script>
+        /* =========================================================
+           MENÚ RESPONSIVE
+           ========================================================= */
 
-            <h3>💙 Salsa Azul</h3>
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+        const navItems = navLinks.querySelectorAll("a");
 
-            <p>Una combinación dulce, ácida y picante.</p>
+        function closeMenu() {
+            menuButton.classList.remove("active");
+            navLinks.classList.remove("active");
+            document.body.classList.remove("menu-open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute("aria-label", "Abrir menú");
+        }
 
-        </div>
+        menuButton.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("active");
 
-        <div class="card">
+            menuButton.classList.toggle("active", isOpen);
+            document.body.classList.toggle("menu-open", isOpen);
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute(
+                "aria-label",
+                isOpen ? "Cerrar menú" : "Abrir menú"
+            );
+        });
 
-            <h3>🌊 Experiencia</h3>
+        navItems.forEach((item) => {
+            item.addEventListener("click", closeMenu);
+        });
 
-            <p>Un snack diferente pensado para jóvenes.</p>
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMenu();
+            }
+        });
 
-        </div>
+        /* =========================================================
+           CAMBIO DEL HEADER AL HACER SCROLL
+           ========================================================= */
 
-    </div>
+        const header = document.getElementById("header");
 
-</section>
+        function updateHeader() {
+            header.classList.toggle("scrolled", window.scrollY > 35);
+        }
 
-<section id="beneficios" class="benefits">
+        updateHeader();
+        window.addEventListener("scroll", updateHeader, { passive: true });
 
-    <h2>¿Por qué elegir Blue Sharks?</h2>
+        /* =========================================================
+           ANIMACIONES AL APARECER EN PANTALLA
+           ========================================================= */
 
-    <ul>
+        const revealElements = document.querySelectorAll(".reveal");
 
-        <li>✔ Diseño llamativo.</li>
+        if ("IntersectionObserver" in window) {
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -40px 0px"
+                }
+            );
 
-        <li>✔ Sabor único.</li>
+            revealElements.forEach((element) => {
+                revealObserver.observe(element);
+            });
+        } else {
+            revealElements.forEach((element) => {
+                element.classList.add("visible");
+            });
+        }
 
-        <li>✔ Inspiración marina.</li>
+        /* =========================================================
+           AÑO AUTOMÁTICO DEL FOOTER
+           ========================================================= */
 
-        <li>✔ Producto innovador.</li>
-
-        <li>✔ Ideal para compartir.</li>
-
-    </ul>
-
-</section>
-
-<section class="colors">
-
-    <h2>Paleta de colores</h2>
-
-    <div class="palette">
-
-        <div class="color navy"></div>
-
-        <div class="color electric"></div>
-
-        <div class="color sky"></div>
-
-        <div class="color gold"></div>
-
-    </div>
-
-</section>
-
-<section id="contacto" class="contact">
-
-    <h2>Contáctanos</h2>
-
-    <form>
-
-        <input type="text" placeholder="Nombre">
-
-        <input type="email" placeholder="Correo">
-
-        <textarea placeholder="Escribe tu mensaje"></textarea>
-
-        <button>Enviar</button>
-
-    </form>
-
-</section>
-
-<footer>
-
-    <h3>Blue Sharks © 2026</h3>
-
-    <p>Síguenos en nuestras redes sociales.</p>
-
-</footer>
+        document.getElementById("currentYear").textContent =
+            new Date().getFullYear();
+    </script>
 
 </body>
-
 </html>
