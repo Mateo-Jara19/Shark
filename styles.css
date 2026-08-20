@@ -43,3 +43,23 @@ a{color:inherit;text-decoration:none}
 .footer{border-top:1px solid var(--line);background:#05111b}.footer__inner{min-height:112px;display:flex;align-items:center;justify-content:space-between;gap:30px}.brand--footer .brand__mark{width:42px;height:42px;font-size:22px}.footer p{margin:0;color:#6e8797;font-size:10px;text-align:right}
 @media(max-width:980px){.nav{display:none}.hero{grid-template-columns:1fr;padding-top:58px}.hero__copy{text-align:center}.hero__copy>p,.hero h1{margin-inline:auto}.hero__actions,.hero__mini-stats{justify-content:center}.hero__visual{min-height:460px}.section-heading{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr 1fr}.order-layout{grid-template-columns:1fr;gap:38px}.stats-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:650px){.shell{width:min(100% - 24px,1180px)}.topbar__inner{min-height:70px}.db-status{display:none}.hero{padding-top:42px;gap:28px}.hero h1{font-size:49px}.hero__copy>p{font-size:15px}.hero__mini-stats{gap:20px}.hero__visual{min-height:410px}.pouch{width:250px;height:340px}.pouch__brand{margin-top:32px;font-size:25px}.section{padding:64px 0}.section-heading h2,.order-copy h2{font-size:38px}.product-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field--full{grid-column:auto}.order-form{padding:20px}.stats-grid{grid-template-columns:1fr 1fr}.stat-card{padding:17px}.stat-card strong{font-size:23px}.section-heading--sales{grid-template-columns:1fr;gap:14px}.refresh-button{width:max-content}.footer__inner{padding:24px 0;flex-direction:column;align-items:flex-start}.footer p{text-align:left}.hero__mini-stats{font-size:90%}}
+
+/* Integración final de imágenes Blue Sharks */
+.brand__mark--logo{overflow:hidden;padding:0;background:#fff}
+.brand__mark--logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.06)}
+.hero__visual{min-height:560px;display:grid;place-items:center;position:relative}
+.hero-logo-card{position:relative;width:min(470px,80vw);aspect-ratio:1/1;display:grid;place-items:center;border-radius:42%;background:radial-gradient(circle at center,rgba(29,159,255,.18),rgba(2,15,28,0) 66%)}
+.hero-logo-card::before,.hero-logo-card::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(78,202,255,.16)}
+.hero-logo-card::before{inset:7%}.hero-logo-card::after{inset:18%;border-style:dashed;opacity:.7}
+.hero-logo-image{position:relative;z-index:2;width:82%;height:auto;mix-blend-mode:screen;filter:drop-shadow(0 30px 50px rgba(0,0,0,.42))}
+.hero-logo-glow{position:absolute;width:74%;height:74%;border-radius:50%;background:radial-gradient(circle,rgba(0,198,255,.18),transparent 68%);filter:blur(10px)}
+.product-grid{align-items:stretch}.product-card{padding:0;min-height:unset;display:flex;flex-direction:column}
+.product-card__image-wrap{position:relative;aspect-ratio:4/4.2;overflow:hidden;background:linear-gradient(160deg,#eef8fb,#dfeaf0);border-bottom:1px solid var(--line)}
+.product-card__image{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .35s ease}
+.product-card:hover .product-card__image{transform:scale(1.035)}
+.product-card__image-wrap .product-tag{position:absolute;left:14px;top:14px;z-index:2;background:rgba(4,21,34,.78);backdrop-filter:blur(8px);color:#fff}
+.product-card__body{display:flex;flex:1;flex-direction:column;padding:22px 22px 20px}
+.product-card__meta{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#7fa9bd;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.product-card h3{margin:15px 0 8px}.product-card p{min-height:unset}.product-card__footer{margin-top:auto;padding-top:20px}
+@media(max-width:980px){.hero__visual{min-height:440px}.hero-logo-card{width:min(410px,72vw)}}
+@media(max-width:650px){.hero__visual{min-height:340px}.hero-logo-card{width:min(310px,78vw)}.product-card__image-wrap{aspect-ratio:4/4.05}}

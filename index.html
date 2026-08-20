@@ -14,12 +14,7 @@
   <header class="topbar">
     <div class="shell topbar__inner">
       <a class="brand" href="#inicio" aria-label="Blue Sharks, inicio">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" role="img">
-            <path d="M7 35c8-7 17-10 27-8 5 1 10 4 14 8l9-8-1 12 6 7-12-2c-5 6-12 9-21 9-10 0-18-5-22-12l10 1-10-7Z" fill="currentColor"/>
-            <circle cx="38" cy="33" r="1.8" fill="#061928"/>
-          </svg>
-        </span>
+        <span class="brand__mark brand__mark--logo"><img src="img/logo-blue-sharks.png" alt="" /></span>
         <span>
           <strong>BLUE SHARKS</strong>
           <small>Sweet • Sour • Spicy</small>
@@ -55,30 +50,17 @@
         </div>
 
         <div class="hero__mini-stats" aria-label="Características del producto">
-          <div><strong>40 g</strong><span>por empaque</span></div>
+          <div><strong>40–60 g</strong><span>según presentación</span></div>
           <div><strong>3</strong><span>presentaciones</span></div>
           <div><strong>100%</strong><span>actitud Blue</span></div>
         </div>
       </div>
 
-      <div class="hero__visual" aria-hidden="true">
-        <div class="hero__bubble hero__bubble--one"></div>
-        <div class="hero__bubble hero__bubble--two"></div>
-        <div class="pouch">
-          <div class="pouch__seal"></div>
-          <div class="pouch__brand">BLUE<br><span>SHARKS</span></div>
-          <div class="pouch__shark">
-            <svg viewBox="0 0 180 105">
-              <path d="M14 57c25-18 54-25 84-17 14 4 26 12 36 22l30-23-4 31 17 19-38-8c-15 17-36 25-61 23-28-2-50-16-64-38l28 3-28-12Z" fill="currentColor"/>
-              <circle cx="113" cy="54" r="4" fill="#071c2a"/>
-            </svg>
-          </div>
-          <div class="pouch__flavor">DULCE • ÁCIDO • PICANTE</div>
-          <div class="pouch__net">CONT. NETO 40 g</div>
+      <div class="hero__visual">
+        <div class="hero-logo-card">
+          <img src="img/logo-blue-sharks.png" alt="Logo oficial de Blue Sharks" class="hero-logo-image" />
+          <span class="hero-logo-glow" aria-hidden="true"></span>
         </div>
-        <div class="gummy gummy--1">🦈</div>
-        <div class="gummy gummy--2">🦈</div>
-        <div class="gummy gummy--3">🦈</div>
       </div>
     </section>
 
@@ -93,41 +75,50 @@
 
       <div class="product-grid">
         <article class="product-card product-card--classic">
-          <div class="product-card__top">
+          <div class="product-card__image-wrap">
+            <img src="img/blue-sharks-clasico.png" alt="Blue Sharks Clásico de 40 gramos" class="product-card__image" />
             <span class="product-tag">Favorito</span>
-            <span class="product-icon">🦈</span>
           </div>
-          <h3>Blue Sharks Clásico</h3>
-          <p>El equilibrio original entre dulce, ácido y un toque picante.</p>
-          <div class="product-card__footer">
-            <strong>$1,75</strong>
-            <button type="button" class="mini-button" data-product="Blue Sharks Clásico">Elegir</button>
+          <div class="product-card__body">
+            <div class="product-card__meta"><span>40 g</span><span>Dulce • Ácido • Picante</span></div>
+            <h3>Blue Sharks Clásico</h3>
+            <p>La receta original: gomitas de tiburón con el equilibrio entre dulce, ácido y picante.</p>
+            <div class="product-card__footer">
+              <strong>$1,75</strong>
+              <button type="button" class="mini-button" data-product="Blue Sharks Clásico">Elegir</button>
+            </div>
           </div>
         </article>
 
         <article class="product-card product-card--spicy">
-          <div class="product-card__top">
+          <div class="product-card__image-wrap">
+            <img src="img/blue-sharks-extra-picante.png" alt="Blue Sharks Extra Picante de 50 gramos" class="product-card__image" />
             <span class="product-tag">Intenso</span>
-            <span class="product-icon">🌶️</span>
           </div>
-          <h3>Blue Sharks Extra Picante</h3>
-          <p>Más carácter, más intensidad y un final picante que se queda.</p>
-          <div class="product-card__footer">
-            <strong>$2,00</strong>
-            <button type="button" class="mini-button" data-product="Blue Sharks Extra Picante">Elegir</button>
+          <div class="product-card__body">
+            <div class="product-card__meta"><span>50 g</span><span>Mayor intensidad</span></div>
+            <h3>Blue Sharks Extra Picante</h3>
+            <p>Una versión más atrevida, con una presentación roja y un perfil picante más marcado.</p>
+            <div class="product-card__footer">
+              <strong>$2,00</strong>
+              <button type="button" class="mini-button" data-product="Blue Sharks Extra Picante">Elegir</button>
+            </div>
           </div>
         </article>
 
         <article class="product-card product-card--mix">
-          <div class="product-card__top">
+          <div class="product-card__image-wrap">
+            <img src="img/blue-sharks-mix.png" alt="Blue Sharks Mix de 60 gramos" class="product-card__image" />
             <span class="product-tag">Nuevo</span>
-            <span class="product-icon">🌊</span>
           </div>
-          <h3>Blue Sharks Mix</h3>
-          <p>Una mezcla sorpresa para quienes quieren probar un poco de todo.</p>
-          <div class="product-card__footer">
-            <strong>$2,25</strong>
-            <button type="button" class="mini-button" data-product="Blue Sharks Mix">Elegir</button>
+          <div class="product-card__body">
+            <div class="product-card__meta"><span>60 g</span><span>Sabores surtidos</span></div>
+            <h3>Blue Sharks Mix</h3>
+            <p>Una mezcla visual y divertida de gomitas de distintos sabores para quienes quieren probar de todo.</p>
+            <div class="product-card__footer">
+              <strong>$2,25</strong>
+              <button type="button" class="mini-button" data-product="Blue Sharks Mix">Elegir</button>
+            </div>
           </div>
         </article>
       </div>
