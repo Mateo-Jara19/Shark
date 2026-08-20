@@ -150,3 +150,14 @@ img{display:block;max-width:100%}
   .form-grid{grid-template-columns:1fr}.field--full{grid-column:auto}.order-form{padding:20px}.location-card{padding:25px}
   .footer__inner{padding:25px 0;flex-direction:column;align-items:flex-start}.footer p{margin:0}
 }
+
+
+.button svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+}
+
+.button--full {
+  min-height: 48px;
+}
