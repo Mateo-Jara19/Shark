@@ -1,157 +1,211 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Blue Sharks — gomitas con sabor dulce, ácido y picante. Registro de ventas conectado a Supabase." />
-  <title>Blue Sharks | Dulce, ácido y picante</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Blue Sharks: gomitas de tiburón dulces, ácidas y picantes. Descubre nuestras presentaciones y haz tu pedido.">
+  <title>Blue Sharks | El sabor que ataca</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="ocean-glow ocean-glow--one"></div>
-  <div class="ocean-glow ocean-glow--two"></div>
+  <div class="ambient ambient--one"></div>
+  <div class="ambient ambient--two"></div>
 
   <header class="topbar">
     <div class="shell topbar__inner">
-      <a class="brand" href="#inicio" aria-label="Blue Sharks, inicio">
-        <span class="brand__mark brand__mark--logo"><img src="img/logo-blue-sharks.png" alt="" /></span>
+      <a class="brand" href="#inicio" aria-label="Blue Sharks">
+        <img src="img/logo-blue-sharks.png" alt="" class="brand__logo">
         <span>
           <strong>BLUE SHARKS</strong>
-          <small>Sweet • Sour • Spicy</small>
+          <small>El sabor que ataca.</small>
         </span>
       </a>
 
-      <nav class="nav" aria-label="Navegación principal">
+      <nav class="nav">
         <a href="#productos">Productos</a>
-        <a href="#pedido">Registrar venta</a>
-        <a href="#ventas">Ventas</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#pedido">Haz tu pedido</a>
+        <a href="#contacto">Contacto</a>
       </nav>
 
-      <div class="db-status" id="dbStatus" title="Estado de conexión con Supabase">
-        <span class="db-status__dot"></span>
-        <span id="dbStatusText">Verificando...</span>
-      </div>
+      <a class="header-cta" href="#pedido">Pedir ahora</a>
     </div>
   </header>
 
   <main>
     <section class="hero shell" id="inicio">
       <div class="hero__copy">
-        <span class="eyebrow">Una mordida. Tres sensaciones.</span>
-        <h1>El lado más <span>intenso</span> de las gomitas.</h1>
+        <span class="eyebrow">DULCE • ÁCIDO • PICANTE</span>
+        <img src="img/logo-blue-sharks.png" alt="Blue Sharks" class="hero__logo">
+        <h1>Una experiencia que <span>ataca</span> tus sentidos.</h1>
         <p>
-          Blue Sharks combina lo dulce, lo ácido y lo picante en una experiencia
-          inspirada en el mar. Elige tu nivel y registra una venta en segundos.
+          Gomitas de tiburón con una combinación intensa de sabores y una identidad
+          inspirada en el océano. Diferentes, llamativas y hechas para quienes buscan probar algo nuevo.
         </p>
 
         <div class="hero__actions">
-          <a class="button button--primary" href="#pedido">Registrar venta</a>
-          <a class="button button--ghost" href="#productos">Ver sabores</a>
+          <a class="button button--primary" href="#productos">Descubrir sabores</a>
+          <a class="button button--ghost" href="#pedido">Haz tu pedido</a>
         </div>
 
-        <div class="hero__mini-stats" aria-label="Características del producto">
-          <div><strong>40–60 g</strong><span>según presentación</span></div>
-          <div><strong>3</strong><span>presentaciones</span></div>
-          <div><strong>100%</strong><span>actitud Blue</span></div>
+        <div class="hero__features">
+          <span>🦈 Forma de tiburón</span>
+          <span>🌊 Identidad marina</span>
+          <span>🔥 Sabor intenso</span>
         </div>
       </div>
 
       <div class="hero__visual">
-        <div class="hero-logo-card">
-          <img src="img/logo-blue-sharks.png" alt="Logo oficial de Blue Sharks" class="hero-logo-image" />
-          <span class="hero-logo-glow" aria-hidden="true"></span>
-        </div>
+        <div class="hero__halo"></div>
+        <img src="img/blue-sharks-clasico.png" alt="Blue Sharks Clásico" class="hero__product">
+        <span class="floating-chip floating-chip--one">40 g</span>
+        <span class="floating-chip floating-chip--two">$1,75</span>
       </div>
     </section>
 
     <section class="section shell" id="productos">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">Elige tu experiencia</span>
-          <h2>Tres formas de entrar al océano.</h2>
+          <span class="eyebrow">NUESTRA LÍNEA</span>
+          <h2>Elige cómo quieres entrar al océano.</h2>
         </div>
-        <p>Las presentaciones también nos ayudan a generar datos distintos para el análisis posterior en Power BI.</p>
+        <p>Tres presentaciones con personalidades distintas, manteniendo la esencia de Blue Sharks.</p>
       </div>
 
       <div class="product-grid">
         <article class="product-card product-card--classic">
           <div class="product-card__image-wrap">
-            <img src="img/blue-sharks-clasico.png" alt="Blue Sharks Clásico de 40 gramos" class="product-card__image" />
+            <img src="img/blue-sharks-clasico.png" alt="Blue Sharks Clásico 40 g" class="product-card__image">
             <span class="product-tag">Favorito</span>
           </div>
           <div class="product-card__body">
-            <div class="product-card__meta"><span>40 g</span><span>Dulce • Ácido • Picante</span></div>
+            <div class="product-card__meta"><span>40 g</span><span>Original</span></div>
             <h3>Blue Sharks Clásico</h3>
-            <p>La receta original: gomitas de tiburón con el equilibrio entre dulce, ácido y picante.</p>
+            <p>El equilibrio original entre dulce, ácido y picante con la esencia azul de la marca.</p>
             <div class="product-card__footer">
               <strong>$1,75</strong>
-              <button type="button" class="mini-button" data-product="Blue Sharks Clásico">Elegir</button>
+              <button class="mini-button" type="button" data-product="Blue Sharks Clásico">Quiero este</button>
             </div>
           </div>
         </article>
 
         <article class="product-card product-card--spicy">
           <div class="product-card__image-wrap">
-            <img src="img/blue-sharks-extra-picante.png" alt="Blue Sharks Extra Picante de 50 gramos" class="product-card__image" />
-            <span class="product-tag">Intenso</span>
+            <img src="img/blue-sharks-extra-picante.png" alt="Blue Sharks Extra Picante 50 g" class="product-card__image">
+            <span class="product-tag">Más intenso</span>
           </div>
           <div class="product-card__body">
-            <div class="product-card__meta"><span>50 g</span><span>Mayor intensidad</span></div>
+            <div class="product-card__meta"><span>50 g</span><span>Extra Picante</span></div>
             <h3>Blue Sharks Extra Picante</h3>
-            <p>Una versión más atrevida, con una presentación roja y un perfil picante más marcado.</p>
+            <p>Más carácter y más intensidad para quienes quieren llevar el picante un nivel más arriba.</p>
             <div class="product-card__footer">
               <strong>$2,00</strong>
-              <button type="button" class="mini-button" data-product="Blue Sharks Extra Picante">Elegir</button>
+              <button class="mini-button" type="button" data-product="Blue Sharks Extra Picante">Quiero este</button>
             </div>
           </div>
         </article>
 
         <article class="product-card product-card--mix">
           <div class="product-card__image-wrap">
-            <img src="img/blue-sharks-mix.png" alt="Blue Sharks Mix de 60 gramos" class="product-card__image" />
+            <img src="img/blue-sharks-mix.png" alt="Blue Sharks Mix 60 g" class="product-card__image">
             <span class="product-tag">Nuevo</span>
           </div>
           <div class="product-card__body">
             <div class="product-card__meta"><span>60 g</span><span>Sabores surtidos</span></div>
             <h3>Blue Sharks Mix</h3>
-            <p>Una mezcla visual y divertida de gomitas de distintos sabores para quienes quieren probar de todo.</p>
+            <p>Una mezcla colorida de gomitas de distintos sabores para quienes quieren probar de todo.</p>
             <div class="product-card__footer">
               <strong>$2,25</strong>
-              <button type="button" class="mini-button" data-product="Blue Sharks Mix">Elegir</button>
+              <button class="mini-button" type="button" data-product="Blue Sharks Mix">Quiero este</button>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section section--panel" id="pedido">
+    <section class="experience" id="experiencia">
+      <div class="shell experience__inner">
+        <div class="experience__copy">
+          <span class="eyebrow">LA EXPERIENCIA BLUE</span>
+          <h2>No es solo una gomita. Es una combinación de sensaciones.</h2>
+          <p>
+            Blue Sharks nace con una propuesta visual y de sabor diferente: gomitas con forma de tiburón,
+            temática marina y una mezcla dulce, ácida y picante que busca sorprender desde el primer bocado.
+          </p>
+        </div>
+
+        <div class="experience-grid">
+          <article>
+            <span class="experience-icon">01</span>
+            <strong>Dulce</strong>
+            <p>La primera sensación que hace que quieras otra mordida.</p>
+          </article>
+          <article>
+            <span class="experience-icon">02</span>
+            <strong>Ácido</strong>
+            <p>Ese giro inesperado que rompe con una gomita convencional.</p>
+          </article>
+          <article>
+            <span class="experience-icon">03</span>
+            <strong>Picante</strong>
+            <p>El final con carácter que le da personalidad a Blue Sharks.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="story-card">
+        <div class="story-card__content">
+          <span class="eyebrow">HECHO PARA DESTACAR</span>
+          <h2>Un snack diferente para una generación que quiere probar cosas nuevas.</h2>
+          <p>
+            Nuestro concepto combina sabor, presentación y una identidad visual reconocible.
+            Blue Sharks está pensado para jóvenes que compran por curiosidad, antojo y experiencia.
+          </p>
+          <div class="story-points">
+            <span>✓ Empaque tipo pouch</span>
+            <span>✓ Producto visible</span>
+            <span>✓ Temática marina</span>
+            <span>✓ Precio accesible</span>
+          </div>
+        </div>
+        <div class="story-card__visual">
+          <img src="img/blue-sharks-clasico.png" alt="Empaque Blue Sharks">
+        </div>
+      </div>
+    </section>
+
+    <section class="order-section" id="pedido">
       <div class="shell order-layout">
         <div class="order-copy">
-          <span class="eyebrow">Registro de ventas</span>
-          <h2>Guarda cada pedido directamente en Supabase.</h2>
+          <span class="eyebrow">HAZ TU PEDIDO</span>
+          <h2>Tu próximo antojo está a unos clics.</h2>
           <p>
-            Este formulario alimenta la tabla <code>ventas_blue_sharks</code>. Más adelante,
-            esos mismos datos viajarán por Pentaho, MySQL y Power BI.
+            Elige tu presentación, cantidad y forma de pago. Tu pedido quedará registrado
+            para que podamos gestionarlo.
           </p>
 
-          <div class="flow-card" aria-label="Flujo de datos del proyecto">
-            <span>GitHub</span><i>→</i><span>Supabase</span><i>→</i><span>Pentaho</span><i>→</i><span>MySQL</span><i>→</i><span>Power BI</span>
+          <div class="order-benefits">
+            <div><span>01</span><p>Elige tu Blue Sharks favorito.</p></div>
+            <div><span>02</span><p>Completa tus datos de pedido.</p></div>
+            <div><span>03</span><p>Recibe confirmación del registro.</p></div>
           </div>
         </div>
 
         <form class="order-form" id="saleForm" novalidate>
           <div class="form-title">
             <div>
-              <small>NUEVA VENTA</small>
-              <h3>Registrar pedido</h3>
+              <small>PEDIDO BLUE SHARKS</small>
+              <h3>¿Qué se te antoja?</h3>
             </div>
-            <span class="form-badge">Blue Sharks</span>
+            <span class="form-badge">🦈</span>
           </div>
 
           <div class="form-grid">
             <label class="field field--full">
-              <span>Nombre del cliente</span>
-              <input id="cliente" name="cliente" type="text" placeholder="Ej. Mateo Jara" autocomplete="name" required />
+              <span>Tu nombre</span>
+              <input id="cliente" name="cliente" type="text" placeholder="Ej. Mateo Jara" autocomplete="name" required>
             </label>
 
             <label class="field">
@@ -167,7 +221,7 @@
             </label>
 
             <label class="field">
-              <span>Método de pago</span>
+              <span>Forma de pago</span>
               <select id="metodo_pago" name="metodo_pago" required>
                 <option value="">Selecciona</option>
                 <option>Efectivo</option>
@@ -177,7 +231,7 @@
             </label>
 
             <label class="field field--full">
-              <span>Producto</span>
+              <span>Presentación</span>
               <select id="producto" name="producto" required>
                 <option value="Blue Sharks Clásico">Blue Sharks Clásico — $1,75</option>
                 <option value="Blue Sharks Extra Picante">Blue Sharks Extra Picante — $2,00</option>
@@ -187,12 +241,12 @@
 
             <label class="field">
               <span>Cantidad</span>
-              <input id="cantidad" name="cantidad" type="number" min="1" max="100" value="1" required />
+              <input id="cantidad" name="cantidad" type="number" min="1" max="100" value="1" required>
             </label>
 
             <label class="field">
               <span>Precio unitario</span>
-              <div class="money-input"><span>$</span><input id="precio" name="precio" type="text" value="1.75" readonly /></div>
+              <div class="money-input"><span>$</span><input id="precio" name="precio" type="text" value="1.75" readonly></div>
             </label>
           </div>
 
@@ -202,7 +256,7 @@
           </div>
 
           <button class="button button--primary button--full" id="submitSale" type="submit">
-            <span>Registrar venta</span>
+            <span>Confirmar pedido</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
 
@@ -211,68 +265,27 @@
       </div>
     </section>
 
-    <section class="section shell" id="ventas">
-      <div class="section-heading section-heading--sales">
+    <section class="section shell location-section" id="contacto">
+      <div class="location-card">
         <div>
-          <span class="eyebrow">Datos en tiempo real</span>
-          <h2>Resumen de ventas.</h2>
-        </div>
-        <button class="refresh-button" id="refreshSales" type="button" title="Actualizar ventas">
-          <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Actualizar
-        </button>
-      </div>
-
-      <div class="stats-grid">
-        <article class="stat-card">
-          <span>Ingresos</span>
-          <strong id="statRevenue">$0,00</strong>
-          <small>ventas registradas</small>
-        </article>
-        <article class="stat-card">
-          <span>Unidades</span>
-          <strong id="statUnits">0</strong>
-          <small>gomitas vendidas</small>
-        </article>
-        <article class="stat-card">
-          <span>Pedidos</span>
-          <strong id="statOrders">0</strong>
-          <small>registros en Supabase</small>
-        </article>
-        <article class="stat-card">
-          <span>Ticket promedio</span>
-          <strong id="statAverage">$0,00</strong>
-          <small>por pedido</small>
-        </article>
-      </div>
-
-      <div class="table-card">
-        <div class="table-card__head">
-          <div>
-            <strong>Ventas recientes</strong>
-            <span>Hora mostrada en Ecuador continental (UTC-5)</span>
-          </div>
-          <span class="record-count" id="recordCount">0 registros</span>
+          <span class="eyebrow">ENCUÉNTRANOS</span>
+          <h2>Blue Sharks empieza en Loja.</h2>
+          <p>Nos encuentras a través de redes sociales, ferias y puntos de venta aliados.</p>
         </div>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Fecha Ecuador</th>
-                <th>Cliente</th>
-                <th>Ciudad</th>
-                <th>Producto</th>
-                <th>Cant.</th>
-                <th>Total</th>
-                <th>Pago</th>
-              </tr>
-            </thead>
-            <tbody id="salesBody">
-              <tr class="empty-row"><td colspan="8">Cargando ventas...</td></tr>
-            </tbody>
-          </table>
+        <div class="location-channels">
+          <a href="https://www.instagram.com/bluesharks.ec/" target="_blank" rel="noopener">
+            <span>Instagram</span>
+            <strong>@bluesharks.ec</strong>
+          </a>
+          <a href="mailto:bluesharks.ec@gmail.com">
+            <span>Correo</span>
+            <strong>bluesharks.ec@gmail.com</strong>
+          </a>
+          <a href="https://wa.me/593991176351" target="_blank" rel="noopener">
+            <span>WhatsApp</span>
+            <strong>+593 991 176 351</strong>
+          </a>
         </div>
       </div>
     </section>
@@ -280,11 +293,11 @@
 
   <footer class="footer">
     <div class="shell footer__inner">
-      <div class="brand brand--footer">
-        <span class="brand__mark" aria-hidden="true">🦈</span>
+      <a class="brand brand--footer" href="#inicio">
+        <img src="img/logo-blue-sharks.png" alt="" class="brand__logo">
         <span><strong>BLUE SHARKS</strong><small>Dulce • Ácido • Picante</small></span>
-      </div>
-      <p>Proyecto académico • Flujo de datos: GitHub → Supabase → Pentaho → MySQL → Power BI</p>
+      </a>
+      <p>© 2026 Blue Sharks. El sabor que ataca.</p>
     </div>
   </footer>
 

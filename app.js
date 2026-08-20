@@ -2,7 +2,6 @@
   'use strict';
 
   const TABLE = 'ventas_blue_sharks';
-  const TIMEZONE = 'America/Guayaquil';
   const PRICES = Object.freeze({
     'Blue Sharks Clásico': 1.75,
     'Blue Sharks Extra Picante': 2.00,
@@ -22,32 +21,13 @@
     metodoPago: $('#metodo_pago'),
     totalDisplay: $('#totalDisplay'),
     submit: $('#submitSale'),
-    message: $('#formMessage'),
-    dbStatus: $('#dbStatus'),
-    dbStatusText: $('#dbStatusText'),
-    salesBody: $('#salesBody'),
-    refreshSales: $('#refreshSales'),
-    statRevenue: $('#statRevenue'),
-    statUnits: $('#statUnits'),
-    statOrders: $('#statOrders'),
-    statAverage: $('#statAverage'),
-    recordCount: $('#recordCount')
+    message: $('#formMessage')
   };
 
   const money = new Intl.NumberFormat('es-EC', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2
-  });
-
-  const dateEcuador = new Intl.DateTimeFormat('es-EC', {
-    timeZone: TIMEZONE,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
   });
 
   const config = window.BLUE_SHARKS_CONFIG || {};
@@ -59,25 +39,10 @@
 
   let db = null;
 
-  function setStatus(type, text) {
-    els.dbStatus.classList.remove('is-online', 'is-offline');
-    if (type) els.dbStatus.classList.add(type);
-    els.dbStatusText.textContent = text;
-  }
-
   function setMessage(text = '', type = '') {
     els.message.textContent = text;
     els.message.className = 'form-message';
     if (type) els.message.classList.add(type);
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? '')
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#039;');
   }
 
   function getCurrentPrice() {
@@ -95,81 +60,14 @@
     els.totalDisplay.textContent = money.format(getCurrentTotal());
   }
 
-  function formatEcuadorDate(value) {
-    if (!value) return '—';
-    const date = new Date(value);
-    return Number.isNaN(date.getTime()) ? '—' : dateEcuador.format(date).replace(',', '');
-  }
-
-  function renderStats(rows) {
-    const revenue = rows.reduce((sum, row) => sum + Number(row.total || 0), 0);
-    const units = rows.reduce((sum, row) => sum + Number(row.cantidad || 0), 0);
-    const orders = rows.length;
-    const average = orders ? revenue / orders : 0;
-
-    els.statRevenue.textContent = money.format(revenue);
-    els.statUnits.textContent = String(units);
-    els.statOrders.textContent = String(orders);
-    els.statAverage.textContent = money.format(average);
-    els.recordCount.textContent = `${orders} ${orders === 1 ? 'registro' : 'registros'}`;
-  }
-
-  function renderSales(rows) {
-    renderStats(rows);
-
-    if (!rows.length) {
-      els.salesBody.innerHTML = '<tr class="empty-row"><td colspan="8">Todavía no hay ventas registradas.</td></tr>';
-      return;
-    }
-
-    els.salesBody.innerHTML = rows.slice(0, 20).map((row) => `
-      <tr>
-        <td>${escapeHtml(row.id)}</td>
-        <td>${escapeHtml(formatEcuadorDate(row.created_at))}</td>
-        <td>${escapeHtml(row.cliente)}</td>
-        <td>${escapeHtml(row.ciudad)}</td>
-        <td>${escapeHtml(row.producto)}</td>
-        <td>${escapeHtml(row.cantidad)}</td>
-        <td>${escapeHtml(money.format(Number(row.total || 0)))}</td>
-        <td>${escapeHtml(row.metodo_pago)}</td>
-      </tr>
-    `).join('');
-  }
-
-  async function loadSales() {
-    if (!db) {
-      renderStats([]);
-      els.salesBody.innerHTML = '<tr class="empty-row"><td colspan="8">Configura Supabase para visualizar las ventas.</td></tr>';
-      return;
-    }
-
-    els.refreshSales.disabled = true;
-    try {
-      const { data, error } = await db
-        .from(TABLE)
-        .select('id, created_at, cliente, ciudad, producto, cantidad, precio, total, metodo_pago')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      renderSales(data || []);
-      setStatus('is-online', 'Supabase conectado');
-    } catch (error) {
-      console.error(error);
-      setStatus('is-offline', 'Error de conexión');
-      els.salesBody.innerHTML = '<tr class="empty-row"><td colspan="8">No se pudieron cargar las ventas. Revisa la configuración de Supabase.</td></tr>';
-    } finally {
-      els.refreshSales.disabled = false;
-    }
-  }
-
-  async function saveSale(event) {
+  async function saveOrder(event) {
     event.preventDefault();
     setMessage();
 
     if (!els.form.reportValidity()) return;
 
     if (!db) {
-      setMessage('Primero debes colocar el Project URL y la Publishable Key en supabase-config.js.', 'is-error');
+      setMessage('Los pedidos están temporalmente no disponibles. Inténtalo nuevamente en unos minutos.', 'is-error');
       return;
     }
 
@@ -188,57 +86,44 @@
     };
 
     els.submit.disabled = true;
-    els.submit.querySelector('span').textContent = 'Guardando...';
+    els.submit.querySelector('span').textContent = 'Registrando pedido...';
 
     try {
       const { error } = await db.from(TABLE).insert(payload);
       if (error) throw error;
 
-      setMessage('Venta registrada correctamente en Supabase ✓', 'is-success');
+      setMessage('¡Pedido registrado! Gracias por elegir Blue Sharks 🦈', 'is-success');
       els.form.reset();
       els.producto.value = 'Blue Sharks Clásico';
       els.cantidad.value = 1;
       updateTotals();
-      await loadSales();
     } catch (error) {
       console.error(error);
-      setMessage(`No se pudo guardar la venta: ${error.message || 'revisa Supabase'}`, 'is-error');
-      setStatus('is-offline', 'Error de conexión');
+      setMessage('No pudimos registrar tu pedido en este momento. Inténtalo nuevamente.', 'is-error');
     } finally {
       els.submit.disabled = false;
-      els.submit.querySelector('span').textContent = 'Registrar venta';
+      els.submit.querySelector('span').textContent = 'Confirmar pedido';
     }
   }
 
   function chooseProduct(product) {
-    if (!PRICES[product]) return;
+    if (!(product in PRICES)) return;
     els.producto.value = product;
     updateTotals();
-    document.querySelector('#pedido').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector('#pedido').scrollIntoView({behavior:'smooth',block:'start'});
   }
 
   function initDatabase() {
-    if (!configReady) {
-      setStatus('is-offline', 'Falta configurar Supabase');
-      els.salesBody.innerHTML = '<tr class="empty-row"><td colspan="8">La página está lista. Falta pegar tus credenciales públicas en supabase-config.js.</td></tr>';
-      return;
-    }
-
-    if (!window.supabase?.createClient) {
-      setStatus('is-offline', 'No cargó Supabase JS');
-      return;
-    }
-
+    if (!configReady || !window.supabase?.createClient) return;
     db = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
-    setStatus('', 'Conectando...');
-    loadSales();
   }
 
   els.producto.addEventListener('change', updateTotals);
   els.cantidad.addEventListener('input', updateTotals);
-  els.form.addEventListener('submit', saveSale);
-  els.refreshSales.addEventListener('click', loadSales);
-  $$('.mini-button').forEach((button) => button.addEventListener('click', () => chooseProduct(button.dataset.product)));
+  els.form.addEventListener('submit', saveOrder);
+  $$('.mini-button').forEach(button => {
+    button.addEventListener('click', () => chooseProduct(button.dataset.product));
+  });
 
   updateTotals();
   initDatabase();
