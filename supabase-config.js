@@ -11,6 +11,6 @@
   - NO pegues aquí una service_role key ni una secret key.
 */
 window.BLUE_SHARKS_CONFIG = Object.freeze({
-  supabaseUrl: 'https://REEMPLAZA-TU-PROYECTO.supabase.co',
-  supabaseAnonKey: 'REEMPLAZA-CON-TU-PUBLISHABLE-KEY'
+  supabaseUrl: 'https://ozaurwbocgzonojcztst.supabase.co',
+  supabaseAnonKey: 'sb_publishable_gYVmdHAoY5wCNMa0buT0kQ_4UVEy209'
 });
